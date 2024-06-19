@@ -2,7 +2,6 @@ import Cocoa
 
 class PermissionsWindow: NSWindow, NSWindowDelegate {
     var accessibilityView: PermissionView!
-    var screenRecordingView: PermissionView!
 
     convenience init() {
         self.init(contentRect: .zero, styleMask: [.titled, .miniaturizable, .closable], backing: .buffered, defer: false)
@@ -13,14 +12,13 @@ class PermissionsWindow: NSWindow, NSWindowDelegate {
 
     func show() {
         accessibilityView.updatePermissionStatus(SystemPermissions.accessibilityIsGranted())
-        screenRecordingView.updatePermissionStatus(SystemPermissions.screenRecordingIsGranted())
         center()
         App.shared.activate(ignoringOtherApps: true)
         makeKeyAndOrderFront(nil)
     }
 
     func windowShouldClose(_ sender: NSWindow) -> Bool {
-        if !SystemPermissions.accessibilityIsGranted() || !SystemPermissions.screenRecordingIsGranted() {
+        if !SystemPermissions.accessibilityIsGranted() {
             debugPrint("Before using this app, you need to give permission in System Preferences > Security & Privacy > Privacy > Accessibility.",
                 "Please authorize and re-launch.",
                 "See https://help.rescuetime.com/article/59-how-do-i-enable-accessibility-permissions-on-mac-osx",
@@ -57,17 +55,6 @@ class PermissionsWindow: NSWindow, NSWindowDelegate {
             [header],
             [accessibilityView],
         ]
-         if #available(OSX 10.15, *) {
-             screenRecordingView = PermissionView(
-                 "screen-recording",
-                 NSLocalizedString("Screen Recording", comment: ""),
-                 NSLocalizedString("This permission is needed to show screenshots and titles of open windows", comment: ""),
-                 NSLocalizedString("Open Screen Recording Preferences…", comment: ""),
-                 "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture",
-                 SystemPermissions.screenRecordingIsGranted
-             )
-             rows.append([screenRecordingView])
-         }
         let view = GridView(rows as! [[NSView]])
         view.fit()
 
