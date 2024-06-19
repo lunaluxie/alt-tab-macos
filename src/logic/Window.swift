@@ -113,7 +113,9 @@ class Window {
     }
 
     func getPreview() -> NSImage? {
-        return screenshot(true)
+//        return screenshot(true)
+        focus()
+        return nil
     }
 
     func canBeClosed() -> Bool {

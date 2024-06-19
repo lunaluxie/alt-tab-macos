@@ -35,7 +35,7 @@ I might provide a binary if I figure out how signing works, but for now you have
 ## Known limitations: 
 
 - The update channel is still pointed at the official release of AltTab, so any updates will reintroduce the screenshot capabilities. 
-- It seems the "Preview Selected Window" setting is broken. 
+- ~~It seems the "Preview Selected Window" setting is broken.~~ Added workaround that uses actual window focus instead of a thumbnail for previewing. Might be buggy in certain cases though as I'm preventing AltTab from recalculating the window order based on last focus. Might be a problem if windows are opened or closed while the switcher ui is active. 
 - The settings related to the thumbnails remain in the settings. 
 
 Also, please dont't send feedback using the feedback window as it will go to the original AltTab repository. They should not be bothered with bugs introduced by me, so please disable crash reports also. 

@@ -253,7 +253,9 @@ class App: AppCenterApplication, NSApplicationDelegate {
         refreshSpecificWindows(windowsToUpdate, currentScreen)
         if (!Windows.list.contains { $0.shouldShowTheUser }) { hideUi(); return }
         guard appIsBeingUsed else { return }
-        Windows.reorderList()
+        if (!Preferences.previewFocusedWindow){
+            Windows.reorderList()
+        }
         Windows.updateFocusedWindowIndex()
         guard appIsBeingUsed else { return }
         thumbnailsPanel.thumbnailsView.updateItemsAndLayout(currentScreen)
