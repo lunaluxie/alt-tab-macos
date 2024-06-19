@@ -57,17 +57,17 @@ class PermissionsWindow: NSWindow, NSWindowDelegate {
             [header],
             [accessibilityView],
         ]
-        if #available(OSX 10.15, *) {
-            screenRecordingView = PermissionView(
-                "screen-recording",
-                NSLocalizedString("Screen Recording", comment: ""),
-                NSLocalizedString("This permission is needed to show screenshots and titles of open windows", comment: ""),
-                NSLocalizedString("Open Screen Recording Preferences…", comment: ""),
-                "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture",
-                SystemPermissions.screenRecordingIsGranted
-            )
-            rows.append([screenRecordingView])
-        }
+         if #available(OSX 10.15, *) {
+             screenRecordingView = PermissionView(
+                 "screen-recording",
+                 NSLocalizedString("Screen Recording", comment: ""),
+                 NSLocalizedString("This permission is needed to show screenshots and titles of open windows", comment: ""),
+                 NSLocalizedString("Open Screen Recording Preferences…", comment: ""),
+                 "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture",
+                 SystemPermissions.screenRecordingIsGranted
+             )
+             rows.append([screenRecordingView])
+         }
         let view = GridView(rows as! [[NSView]])
         view.fit()
 

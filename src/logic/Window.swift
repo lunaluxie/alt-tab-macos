@@ -101,10 +101,7 @@ class Window {
     }
 
     private func screenshot(_ bestResolution: Bool = false) -> NSImage? {
-        guard !isWindowlessApp, let cgWindowId = cgWindowId, cgWindowId != -1, let cgImage = cgWindowId.screenshot(bestResolution) else {
-            return nil
-        }
-        return NSImage(cgImage: cgImage, size: NSSize(width: cgImage.width, height: cgImage.height))
+        return nil // ripping out screenshot functionality.
     }
 
     func refreshThumbnail() {
@@ -279,4 +276,3 @@ class Window {
         return isTabbed ? application.focusedWindow : self
     }
 }
-
